@@ -322,3 +322,26 @@ label[for="chb_invertir_coronal"] {
   margin-right: 10px; /* Espacio entre el checkbox y el texto */
 }
 
+/* Estilo por defecto del botón */
+.vrbutton {
+  background-color: #f0f0f0; /* Color por defecto */
+  color: rgb(0, 0, 0); /* Texto en blanco */
+}
+
+/* Estilo cuando está en modo VR */
+.vrbutton.active {
+  background-color: red; /* Color para indicar que está activo */
+  color: yellow; /* Color del texto */
+}
+
+/* Estilo por defecto del botón AR */
+.arbutton {
+  background-color: #f0f0f0; /* Color por defecto */
+  color: rgb(0, 0, 0); /* Texto en blanco */
+}
+
+/* Estilo cuando está en modo AR */
+.arbutton.active {
+  background-color: red; /* Color para indicar que está activo */
+  color: yellow; /* Color del texto */
+}

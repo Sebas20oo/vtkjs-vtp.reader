@@ -229,12 +229,14 @@ const arbutton = document.querySelector('.arbutton');
 arbutton.disabled = !XRHelper.getXrSupported();
 
 arbutton.addEventListener('click', (e) => {
-  if (arbutton.textContent === 'Start AR') {
+  if (arbutton.textContent === 'Send To AR') {
     XRHelper.startXR(XrSessionTypes.MobileAR); // Inicia sesión en AR
     arbutton.textContent = 'Exit AR';
+    arbutton.classList.add('active'); // Añade la clase activa
   } else {
     XRHelper.stopXR();
-    arbutton.textContent = 'Start AR';
+    arbutton.textContent = 'Send To AR';
+    arbutton.classList.remove('active'); // Remueve la clase activa
   }
 });
 
@@ -245,9 +247,11 @@ vrbutton.addEventListener('click', (e) => {
     //console.log("Test: " + navigator.xr)  // pruebas
     XRHelper.startXR(XrSessionTypes.HmdVR); // Inicia sesión en VR
     vrbutton.textContent = 'Return From VR';
+    vrbutton.classList.add('active'); // Agrega la clase activa
   } else {
     XRHelper.stopXR();
     vrbutton.textContent = 'Send To VR';
+    vrbutton.classList.remove('active'); // Remueve la clase activa
   }
   console.log("Botón clickeado"); // pruebas
 });
