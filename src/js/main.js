@@ -106,11 +106,11 @@ function loadVTP() {
 
         reader.setUrl(file).then(() => {
             reader.loadData().then(() => {
-                renderer.addActor(actor);
-                actors[index] = actor;
-
-                renderer.resetCamera();
-                renderWindow.render();
+                //renderer.addActor(actor); para que no aparesca al cargar la pagina
+                actors[index] = actor;// Almacena el actor sin agregarlo al renderer
+                console.log(`Actor ${file} cargado, pero no añadido a la escena.`);
+                //renderer.resetCamera(); para que no aparesca al cargar la pagina
+                //renderWindow.render();  para que no aparesca al cargar la pagina
             });
         }).catch((error) => {
             console.error(`Error al cargar el archivo VTP: ${file}`, error);
@@ -135,21 +135,20 @@ function generateControlPanel() {
   modeSelector.id = "selec";
   modeSelector.className = "representations";
   
-  const optPoits = document.createElement("option");
-  optPoits.value = 0;
-  optPoits.text = "Points";
-  modeSelector.appendChild(optPoits);
+  const optSurface = document.createElement("option");
+  optSurface.value = 2;
+  optSurface.text = "Surface";
+  modeSelector.appendChild(optSurface);
 
   const optWireFrame = document.createElement("option");
   optWireFrame.value = 1;
   optWireFrame.text = "Wireframe";
   modeSelector.appendChild(optWireFrame);
 
-  const optSurface = document.createElement("option");
-  optSurface.value = 2;
-  optSurface.text = "Surface";
-  modeSelector.appendChild(optSurface);
-
+  const optPoits = document.createElement("option");
+  optPoits.value = 0;
+  optPoits.text = "Points";
+  modeSelector.appendChild(optPoits);
 
   const controlPanel = document.getElementById("controlPanel");
   controlPanel.appendChild(arbtn);
@@ -163,7 +162,7 @@ function generateControlPanel() {
     const checkbox = document.createElement('input'); // tipo de entrada input tipo checkbox
     checkbox.type = 'checkbox';
     checkbox.id = `checkboxVTP-${index}`;
-    checkbox.checked = true;
+    checkbox.checked = false;
 
     const label = document.createElement('label');
     label.htmlFor = `checkboxVTP-${index}`;
@@ -201,9 +200,9 @@ function createControlEvents() {
       checkbox.addEventListener('change', (event) => {
           const actor = actors[index];
           if (event.target.checked) {
-              renderer.addActor(actor);
+              renderer.addActor(actor);// Añadir el actor a la escena si el checkbox está marcado
           } else {
-              renderer.removeActor(actor);
+              renderer.removeActor(actor);// Quitar el actor de la escena si el checkbox está desmarcado 
           }
           renderer.resetCamera();
           renderWindow.render();
@@ -252,6 +251,7 @@ vrbutton.addEventListener('click', (e) => {
     XRHelper.stopXR();
     vrbutton.textContent = 'Send To VR';
     vrbutton.classList.remove('active'); // Remueve la clase activa
+
   }
   console.log("Botón clickeado"); // pruebas
 });
