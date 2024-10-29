@@ -14,7 +14,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@kitware/vtk.js": "^30.5.1",
+    "@kitware/vtk.js": "^30.10.0",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
     "mammoth": "^1.8.0",
